@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "private": true,
-  "homepage": "https://zkerkeb-class.github.io/todo-list-avanc-react-svenickx/",
+  "homepage": "https://zkerkeb-class.github.io/todo-list-avanc-react-svenickx",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "format": "prettier --write ./src",
     "prepare": "husky",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -30,6 +30,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
+    "gh-pages": "^6.2.0",
     "globals": "^15.9.0",
     "husky": "^9.1.6",
     "postcss": "^8.4.47",
