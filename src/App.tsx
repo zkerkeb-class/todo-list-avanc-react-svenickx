@@ -9,11 +9,11 @@ export interface ITask {
 
 export enum EStatus {
   DONE = 0,
-  NOT_DONE,
+  PENDING,
 }
 
 function App() {
-  const [currentStatus, setCurrentTab] = useState<EStatus>(EStatus.NOT_DONE);
+  const [currentStatus, setCurrentTab] = useState<EStatus>(EStatus.PENDING);
   const [newTask, SetNewTask] = useState<string>('');
   const [tasks, setTasks] = useState<ITask[]>([
     {
@@ -21,7 +21,7 @@ function App() {
       task: 'Nettoyer les toilettes',
     },
     {
-      status: EStatus.NOT_DONE,
+      status: EStatus.PENDING,
       task: 'Se brosser les dents',
     },
   ]);
@@ -32,7 +32,7 @@ function App() {
   );
 
   const doneTasks = useMemo(() => filteredTasks(EStatus.DONE), [tasks]);
-  const notDoneTasks = useMemo(() => filteredTasks(EStatus.NOT_DONE), [tasks]);
+  const pendingTasks = useMemo(() => filteredTasks(EStatus.PENDING), [tasks]);
 
   const addTask = () => {
     setTasks((t) => [...t, { status: currentStatus, task: newTask }]);
@@ -45,10 +45,10 @@ function App() {
         <Button
           onClick={() => {
             SetNewTask('');
-            setCurrentTab(EStatus.NOT_DONE);
+            setCurrentTab(EStatus.PENDING);
           }}
           label="A faire"
-          style={`${currentStatus === EStatus.NOT_DONE ? 'bg-gray-900' : ''}`}
+          style={`${currentStatus === EStatus.PENDING ? 'bg-gray-900' : ''}`}
         />
         <Button
           onClick={() => {
@@ -59,11 +59,11 @@ function App() {
           style={`${currentStatus === EStatus.DONE ? 'bg-gray-900' : ''}`}
         />
       </div>
-      {currentStatus === EStatus.NOT_DONE && (
+      {currentStatus === EStatus.PENDING && (
         <Todos
-          tasks={notDoneTasks}
+          tasks={pendingTasks}
           addTask={addTask}
-          status={EStatus.NOT_DONE}
+          status={EStatus.PENDING}
         />
       )}
       {currentStatus === EStatus.DONE && (
